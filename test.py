@@ -2,7 +2,7 @@ import pyglet
 
 window = pyglet.window.Window()
 
-label = pyglet.text.Label('Helloo, Pythonn',
+label = pyglet.text.Label('Helloo, Pythonn !',
                           font_name='Times New Roman',
                           font_size=44,
                           x=window.width//2, y=window.height//2,
