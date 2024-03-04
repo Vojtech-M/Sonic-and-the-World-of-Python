@@ -2,7 +2,7 @@ import pyglet
 
 window = pyglet.window.Window( fullscreen = True)
 
-label = pyglet.text.Label('HELLO PYTHON !',
+label = pyglet.text.Label('HELLO PYTHONN !',
                           font_name='Lilita One',
                           font_size=72,
                           x=window.width//2, y=window.height//2,
