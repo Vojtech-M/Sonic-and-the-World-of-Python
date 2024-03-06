@@ -52,6 +52,35 @@ class MyWindow(pyglet.window.Window):
             self.circle.y -= self.speed
         pass
 
+
+'''
+
+class Player(pyglet.sprite.Sprite):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.vx = 0
+        self.vy = 0
+        self.falling = False
+        self.standing = True
+        self.moving = False
+        self.jumpCooled = True
+        self.left = False
+        self.right = False
+
+    def fall(self,dt):
+        self.falling = True
+        if self.vy > -600:
+            self.vy = self.vy - 1200 * dt
+
+'''
+
+
+
+
+
+
+
+
 #if __name__ == "__main__"
 window = MyWindow(width=1280, height=720, caption="Sonic and the world of Python", resizable=True)
 pyglet.clock.schedule_interval(window.update,1/60)
