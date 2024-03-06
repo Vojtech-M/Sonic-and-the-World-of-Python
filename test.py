@@ -1,5 +1,6 @@
 import pyglet
 from pyglet import shapes
+from pyglet.window import key
 
 window = pyglet.window.Window( fullscreen = False)
 
@@ -10,7 +11,8 @@ label = pyglet.text.Label('HELLO PYTHON !',
                           anchor_x='center', anchor_y='center',
                          )
 #image = pyglet.resource.image('papousek.jpeg')
-circle = shapes.Circle(x = 100, y = 100, radius = 13, color=(2, 20, 200))
+circle1 = shapes.Circle(x = 100, y = 100, radius = 13, color=(2, 20, 200))
+circle2 = shapes.Circle(x = 100, y = 100, radius = 13, color=(2, 20, 200))
 
    # image.blit(0, 0)
 @window.event
@@ -22,8 +24,8 @@ def on_key_press(symbol, modifiers):
 
 @window.event
 def on_mouse_motion(x, y, dx, dy):
-    circle.x = x
-    circle.y = y
+    circle1.x = x
+    circle1.y = y
 
 batch = pyglet.graphics.Batch()
 
@@ -49,7 +51,7 @@ goblin = pyglet.sprite.Sprite(
     batch=batch
 )
 
-batch = pyglet.graphics.Batch()
+
 background = pyglet.graphics.Group(0)
 foreground = pyglet.graphics.Group(1)
 
@@ -78,15 +80,58 @@ health = shapes.Rectangle(
 def on_draw():
     window.clear()
     label.draw()
-    circle.draw()
+    circle1.draw()
+    circle2.draw()
     batch.draw()
     goblin.draw()
+
+directions = {'left':False,'right':False,'up':False,'down':False}
+speed = 5
+
+
+@window.event
+def on_key_press(symbol: int,modifiers: int) -> None:
+    if symbol == key.LEFT:
+        directions['left'] = True
+    if symbol == key.RIGHT:
+        directions['right'] = True
+    if symbol == key.UP:
+        directions['up'] = True
+    if symbol == key.DOWN:
+         directions['down'] = True  
+    pass
+
+@window.event
+def on_key_release(symbol: int,modifiers: int) -> None:
+    if symbol == key.LEFT:
+        directions['left'] = False
+    if symbol == key.RIGHT:
+        directions['right'] = False
+    if symbol == key.UP:
+        directions['up'] = False
+    if symbol == key.DOWN:
+         directions['down'] = False  
+    pass
+
+def update(dt: float) -> None:
+    if directions['left']:
+        circle2.x -= speed
+    if directions['right']:
+        circle2.x += speed
+    if directions['up']:
+        circle2.y += speed
+    if directions['down']:
+        circle2.y -= speed
+    pass
+
+
+
+pyglet.clock.schedule_interval(update,1/60)
+pyglet.app.run()
 
 #class Player():
     #phisical object
 
-
-pyglet.app.run()
 
 
 #window.set_fullscreen(False)
