@@ -1,6 +1,25 @@
 import pyglet
 from pyglet import shapes
 from pyglet.window import key
+from pyglet import clock
+import math
+import time
+import calendar
+import time
+
+
+
+#def callback(dt):
+   # print(f"{dt} seconds since last callback")
+
+#clock.schedule_interval(callback, 2) 
+
+def timer(dt):
+    print("test")
+clock.schedule_interval(timer, 1) 
+
+
+
 
 class MyWindow(pyglet.window.Window):
     def __init__(self, *args, **kwargs):
@@ -13,6 +32,7 @@ class MyWindow(pyglet.window.Window):
         self.ball_image = pyglet.image.load('img/00.png')
         self.circle = pyglet.sprite.Sprite(self.ball_image, x=50, y=50,batch=self.batch)
         self.directions = {'left':False,'right':False,'up':False,'down':False}
+        self.speed = 10
         
     def on_key_press(self,symbol: int,modifiers: int) -> None:
         if symbol == key.LEFT:
@@ -23,6 +43,10 @@ class MyWindow(pyglet.window.Window):
             self.directions['up'] = True
         if symbol == key.DOWN:
             self.directions['down'] = True  
+
+        if symbol == pyglet.window.key.C: 
+            print("Key C is pressed")
+            label.draw()
         pass
 
     def on_key_release(self,symbol: int,modifiers: int) -> None:
@@ -36,21 +60,26 @@ class MyWindow(pyglet.window.Window):
             self.directions['down'] = False  
         pass
 
+     
     def on_draw(self) -> None:
         self.clear()
         self.batch.draw()
 
-        pass
+
+
     def update(self,dt: float) -> None:
         if self.directions['left']:
-            self.circle.x -= self.speed
+            self.circle.x -= (self.speed + 2) * dt
+
         if self.directions['right']:
-            self.circle.x += self.speed
+            self.circle.x += self.speed + dt * 4
         if self.directions['up']:
-            self.circle.y += self.speed
+            self.circle.y += self.speed + dt * 4
         if self.directions['down']:
-            self.circle.y -= self.speed
+            self.circle.y -= self.speed + dt * 4
         pass
+
+
 
 #if __name__ == "__main__"
 window = MyWindow(width=1280, height=720, caption="Sonic and the world of Python", resizable=True)
@@ -58,3 +87,31 @@ pyglet.clock.schedule_interval(window.update,1/60)
 pyglet.app.run()
 
 
+#timer, not included in program
+seconds=0
+minutes =0
+
+while(1):
+ 
+    print(f"{minutes}:{seconds}")
+    time.sleep(1)
+    seconds += 1
+    if seconds == 60:
+        seconds = 0
+        minutes += 1
+
+'''
+def format_time(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    return f"{minutes:02d}:{seconds:02d}"
+
+def timer():
+    seconds = 0
+    while True:
+        print(format_time(seconds), end='\r')
+        time.sleep(1)
+        seconds += 1
+
+# Example usage:
+timer()  # 
+    '''
