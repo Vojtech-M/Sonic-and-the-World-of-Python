@@ -13,6 +13,7 @@ class MyWindow(pyglet.window.Window):
         self.ball_image = pyglet.image.load('img/00.png')
         self.circle = pyglet.sprite.Sprite(self.ball_image, x=50, y=50,batch=self.batch)
         self.directions = {'left':False,'right':False,'up':False,'down':False}
+        
     def on_key_press(self,symbol: int,modifiers: int) -> None:
         if symbol == key.LEFT:
             self.directions['left'] = True

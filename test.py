@@ -19,8 +19,9 @@ circle2 = shapes.Circle(x = 100, y = 100, radius = 13, color=(2, 20, 200))
 def on_key_press(symbol, modifiers):
     print("test")
     if symbol == pyglet.window.key.C: 
-        print("Key C is pressed") 
+        print("Key C is pressed")
        
+
 
 @window.event
 def on_mouse_motion(x, y, dx, dy):
