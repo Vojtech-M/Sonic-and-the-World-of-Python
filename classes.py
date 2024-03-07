@@ -7,7 +7,6 @@ import time
 import calendar
 import time
 
-<<<<<<< HEAD
 i = 0
 def callback(dt):
     global i
@@ -23,9 +22,6 @@ label = pyglet.text.Label(i,
         
 
 clock.schedule_interval(callback, 1)
-=======
-
->>>>>>> c42e69552e4dcacd71d5bd9e71d5806df5a14667
 
 #def callback(dt):
    # print(f"{dt} seconds since last callback")
