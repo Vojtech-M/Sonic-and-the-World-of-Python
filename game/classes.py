@@ -4,37 +4,51 @@ from pyglet.window import key
 from pyglet import clock
 import math
 import time
-import calendar
-import time
 
-i = 0
-def callback(dt):
-    global i
-    i += 1
-    print(f"{str(i).zfill(2)} seconds since last callback")
+pyglet.font.add_file('game/img/PublicPixel.ttf')
+PublicPixel = pyglet.font.load('Public Pixel')
 
-clock.schedule_interval(callback, 1)
 
-#def callback(dt):
-   # print(f"{dt} seconds since last callback")
+class Timer:
+    def __init__(self):
+        self.elapsed_time = 0
+        self.label = pyglet.text.Label('00:00',
+                                        font_name='Public Pixel',
+                                        font_size=36,
+                                        x=300, y=300,
+                                        anchor_x='center', anchor_y='center')
 
-#clock.schedule_interval(callback, 2) 
-
-def timer(dt):
-    print("test")
-clock.schedule_interval(timer, 1) 
+    def update(self, dt):
+        self.elapsed_time += dt
+        minutes = int(self.elapsed_time / 60)
+        seconds = int(self.elapsed_time % 60)
+        self.label.text = f'{minutes:02}:{seconds:02}'
 
 class MyWindow(pyglet.window.Window):
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
+        self.timer = Timer()
+        self.timer.label.x = self.width // 2
+        self.timer.label.y = self.height - 50
+        self.batch = pyglet.graphics.Batch()
         self.set_location(x=400, y=200)
         self.set_minimum_size(width=400, height=400)
        
-      
-        self.batch = pyglet.graphics.Batch()
+    
+        
         #self.circle = shapes.Circle(x=640, y=360, radius=50, color=(250,50,30),batch=self.batch)
         self.ball_image = pyglet.image.load('game/img/00.png')
         self.circle = pyglet.sprite.Sprite(self.ball_image, x=50, y=50,batch=self.batch)
+        
+        self.label = pyglet.text.Label('Hello, world',
+                                        font_name='Public Pixel',
+                                        font_size=36,
+                                        x=self.width//2, y=500,
+                                        anchor_x='center', anchor_y='center',
+                                        batch=self.batch)
+        
+        
+        
         self.directions = {'left':False,'right':False,'up':False,'down':False}
         self.speed = 10
 
@@ -64,12 +78,16 @@ class MyWindow(pyglet.window.Window):
             self.directions['down'] = False  
         pass
 
-     
+
     def on_draw(self) -> None:
         self.clear()
+        self.label.draw()
+        self.timer.label.draw()
         self.batch.draw()
+       
 
     def update(self,dt: float) -> None:
+        self.timer.update(dt)
         if self.directions['left']:
             self.circle.x -= self.speed + 2
 
