@@ -28,15 +28,9 @@ clock.schedule_interval(callback, 1)
 
 #clock.schedule_interval(callback, 2) 
 
-<<<<<<< HEAD
-=======
 def timer(dt):
     print("test")
 clock.schedule_interval(timer, 1) 
-
-
-
->>>>>>> c42e69552e4dcacd71d5bd9e71d5806df5a14667
 
 class MyWindow(pyglet.window.Window):
     def __init__(self, *args, **kwargs):
@@ -50,13 +44,7 @@ class MyWindow(pyglet.window.Window):
         self.circle = pyglet.sprite.Sprite(self.ball_image, x=50, y=50,batch=self.batch)
         self.directions = {'left':False,'right':False,'up':False,'down':False}
         self.speed = 10
-<<<<<<< HEAD
-        self.square = shapes.Rectangle(x=200,y=0, width=200, height=200, color=(55,55,255),batch=self.batch)
-    
 
-=======
-        
->>>>>>> c42e69552e4dcacd71d5bd9e71d5806df5a14667
     def on_key_press(self,symbol: int,modifiers: int) -> None:
         if symbol == key.LEFT:
             self.directions['left'] = True
@@ -88,17 +76,9 @@ class MyWindow(pyglet.window.Window):
         self.clear()
         self.batch.draw()
 
-<<<<<<< HEAD
     def update(self,dt: float) -> None:
         if self.directions['left']:
             self.circle.x -= self.speed + 2
-=======
-
-
-    def update(self,dt: float) -> None:
-        if self.directions['left']:
-            self.circle.x -= (self.speed + 2) * dt
->>>>>>> c42e69552e4dcacd71d5bd9e71d5806df5a14667
 
         if self.directions['right']:
             self.circle.x += self.speed + dt * 4
@@ -115,43 +95,3 @@ window = MyWindow(width=1280, height=720, caption="Sonic and the world of Python
 pyglet.clock.schedule_interval(window.update,1/60)
 pyglet.app.run()
 
-'''
-#timer, not included in program
-seconds=0
-minutes =0
-
-<<<<<<< HEAD
-=======
-#timer, not included in program
-seconds=0
-minutes =0
-
->>>>>>> c42e69552e4dcacd71d5bd9e71d5806df5a14667
-while(1):
- 
-    print(f"{minutes}:{seconds}")
-    time.sleep(1)
-    seconds += 1
-    if seconds == 60:
-        seconds = 0
-        minutes += 1
-
-<<<<<<< HEAD
-
-=======
-'''
->>>>>>> c42e69552e4dcacd71d5bd9e71d5806df5a14667
-def format_time(seconds):
-    minutes, seconds = divmod(seconds, 60)
-    return f"{minutes:02d}:{seconds:02d}"
-
-def timer():
-    seconds = 0
-    while True:
-        print(format_time(seconds), end='\r')
-        time.sleep(1)
-        seconds += 1
-
-# Example usage:
-timer()  # 
-    '''
