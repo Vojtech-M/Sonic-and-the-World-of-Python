@@ -13,14 +13,6 @@ def callback(dt):
     i += 1
     print(f"{str(i).zfill(2)} seconds since last callback")
 
-label = pyglet.text.Label(i,
-                          font_name='Times New Roman',
-                          font_size=36,
-                          x=200, y=200,
-                          anchor_x='center', anchor_y='center',
-                          )
-        
-
 clock.schedule_interval(callback, 1)
 
 #def callback(dt):
@@ -37,10 +29,11 @@ class MyWindow(pyglet.window.Window):
         super().__init__(*args,**kwargs)
         self.set_location(x=400, y=200)
         self.set_minimum_size(width=400, height=400)
-
+       
+      
         self.batch = pyglet.graphics.Batch()
         #self.circle = shapes.Circle(x=640, y=360, radius=50, color=(250,50,30),batch=self.batch)
-        self.ball_image = pyglet.image.load('img/00.png')
+        self.ball_image = pyglet.image.load('game/img/00.png')
         self.circle = pyglet.sprite.Sprite(self.ball_image, x=50, y=50,batch=self.batch)
         self.directions = {'left':False,'right':False,'up':False,'down':False}
         self.speed = 10
@@ -92,6 +85,9 @@ class MyWindow(pyglet.window.Window):
 
 #if __name__ == "__main__"
 window = MyWindow(width=1280, height=720, caption="Sonic and the world of Python", resizable=True)
+img = pyglet.image.load("game/img/logo.png")  # Correct the path if needed
+window.set_icon(img)
+
 pyglet.clock.schedule_interval(window.update,1/60)
 pyglet.app.run()
 
