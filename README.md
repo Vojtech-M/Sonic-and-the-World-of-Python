@@ -1,5 +1,9 @@
 # Sonic and the World of Python
 
+
+## Still in progress 👨‍🏭
+
+
 Sonic and the World of Python is a Python-based game inspired by the classic "Sonic the Hedgehog". Developed as a semestral project for the BI-PYT course at CTU-FIT, this game involves navigating multiple levels, collecting scores, and facing a challenging final enemy.
 
 **Running the game**
