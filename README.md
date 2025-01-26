@@ -1,5 +1,7 @@
 # Sonic and the World of Python
 
+![Game Screenshot](https://github.com/Vojtech-M/Sonic-and-the-World-of-Python/blob/main/game/assets/screenshot.PNG)
+
 
 ## Still in progress 👨‍🏭
 
